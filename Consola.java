@@ -1,14 +1,13 @@
 package ProyectoIntermodular;
-
 //Unai Lopera Gil
-//Tabla Producto y Tabla Consola
+//Tabla Producto y Tabla NuevaConsola
 
 public class Consola extends Producto{
     private String modelo;
     private String marca;
 
     public Consola(String codProd, int PVP, String modelo, String marca) {
-        super(codProd, PVP, "Consola");
+        super(codProd, PVP, "NuevaConsola");
         this.modelo = modelo;
         this.marca = marca;
     }
@@ -31,7 +30,7 @@ public class Consola extends Producto{
 
     @Override
     public String toString() {
-        return "Consola{" +
+        return "NuevaConsola{" +
                 "modelo='" + modelo + '\'' +
                 ", marca='" + marca + '\'' +
                 '}';

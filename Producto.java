@@ -1,11 +1,11 @@
 package ProyectoIntermodular;
 //Unai Lopera Gil
-//Tabla Producto y Tabla Consola
+//Tabla Producto y Tabla NuevaConsola
 
 public class Producto {
     private String codProd; //Maximo 30 caracteres
     private int PVP; //Debería haber sido tipo double, mayor que 0
-    private String tipo; //Solo puede tener valores "Consola" y "Juego"
+    private String tipo; //Solo puede tener valores "NuevaConsola" y "Juego"
 
     public Producto(String codProd, int PVP, String tipo) {
         this.codProd = codProd;
