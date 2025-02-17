@@ -16,7 +16,7 @@ public class Main {
         ArrayDeConsola consolas = new ArrayDeConsola();
         boolean continuar = true;
         int opcion = 0;
-        boolean opcionValida = false;
+        boolean opcionValida;
 
         while (continuar) {
             do {
@@ -61,14 +61,53 @@ public class Main {
                     }
                     break;
                 case 3:
+                    String antiguoCodProd;
+                    do {
+                        System.out.println("Introduce el CodProd de la consola que quieres actualizar: ");
+                        antiguoCodProd = scanner.nextLine();
+                    }while(!checkCodProd(antiguoCodProd));
+                    Consola antigua = consolas.queryConsola(antiguoCodProd);
+                    if(antigua != null){
+                        System.out.println(textoVerde + "Introduce a continuación los datos actualizados" + resetColor);
+                        Consola nueva = Crear.NuevaConsola();
+                        if(consolas.updateConsola(antigua, nueva)){
+                            System.out.println(textoVerde + "Se ha actualizado la consola correctamente" + resetColor);
+                        }
+                        else{
+                            System.out.println(textoRojo + "No se ha podido actualizar la consola (comprueba que el CodProd introducido es válido)" + resetColor);
+                        }
+                    }
+                    else{
+                        System.out.println(textoRojo + "ERROR, consola no encontrada" + resetColor);
+                    }
                     break;
                 case 4:
+                    String buscarCodProd;
+                    do{
+                        System.out.println("Introduce el CodProd de la consola que quieres buscar: ");
+                        buscarCodProd = scanner.nextLine();
+                    }while(!checkCodProd(buscarCodProd));
+                    Consola busqueda = consolas.queryConsola(buscarCodProd);
+                    if(busqueda != null){
+                        System.out.println(textoVerde + "La información de la consola es la siguiente: " + resetColor);
+                        System.out.println("Código: " + busqueda.getCodProd());
+                        System.out.println("Precio: " + busqueda.getPVP() + "€");
+                        System.out.println("Modelo: " + busqueda.getModelo());
+                        System.out.println("Marca: " + busqueda.getMarca());
+                    }
+                    else {
+                        System.out.println(textoRojo + "ERROR consola no encontrada" + resetColor);
+                    }
                     break;
                 case 5:
-                    consolas.printConsola();
+                    System.out.println(" ");
+                    if(!consolas.printConsola()){
+                        System.out.println(textoRojo + "Lista de Consolas vacía" + resetColor);
+                    }
                     break;
                 case 0:
-                    System.out.println("Finalizando programa...");
+                    System.out.println(" ");
+                    System.out.println(textoVerde + "Finalizando programa..." + resetColor);
                     continuar = false;
                     break;
                 default:
@@ -99,5 +138,4 @@ public class Main {
             return true;
         }
     }
-
 }

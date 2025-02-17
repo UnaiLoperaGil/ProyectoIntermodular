@@ -6,7 +6,7 @@ public class ArrayDeConsola{
     ArrayList<Consola> consolas = new ArrayList<>();
 
     public boolean addNewConsola(Consola agregar){
-        if(findConsola(agregar.getCodProd())>=0){
+        if(findConsola(agregar.getCodProd()) >= 0){
             return false;
         }
         else{
@@ -16,7 +16,7 @@ public class ArrayDeConsola{
     }
 
     public boolean removeConsola(Consola eliminar){
-        if(findConsola(eliminar)>=0){
+        if(findConsola(eliminar) >= 0){
             this.consolas.remove(eliminar);
             return true;
         }
@@ -26,20 +26,18 @@ public class ArrayDeConsola{
     }
 
     public boolean updateConsola(Consola antigua, Consola nueva){
-        int posicionAntigua = findConsola(antigua);
-        if(posicionAntigua!=-1 && findConsola(nueva)==-1){
+        int posicionAntigua = findConsola(antigua.getCodProd());
+        if(posicionAntigua != -1 && findConsola(nueva.getCodProd()) == -1){
             this.consolas.set(posicionAntigua,nueva);
-            System.out.println("Se ha actualizado la consola correctamente");
             return true;
         }
         else{
-            System.out.println("No se ha podido actualizar la consola");
             return false;
         }
     }
 
     private int findConsola(Consola buscar){
-        for (int i = 0; i<this.consolas.size(); i++){
+        for (int i = 0; i < this.consolas.size(); i++){
             if(this.consolas.get(i).equals(buscar)){
                 return i;
             }
@@ -58,7 +56,7 @@ public class ArrayDeConsola{
 
     public Consola queryConsola(String codProd){
         int index = findConsola(codProd);
-        if(index>=0){
+        if(index >= 0){
             return this.consolas.get(index);
         }
         else{
@@ -66,12 +64,23 @@ public class ArrayDeConsola{
         }
     }
 
-    public void printConsola(){
-        System.out.println("Lista de Consolas: ");
-        for(int i = 0; i < this.consolas.size(); i++){
-            System.out.println((i+1) + ". " + this.consolas.get(i).getCodProd() + " --> " + this.consolas.get(i).getModelo());
+    public boolean printConsola() {
+        if (this.consolas.isEmpty()) {
+            return false;
+        } else {
+            System.out.println("Lista de Consolas:");
+            System.out.println("----------------------------------");
+            for (int i = 0; i < this.consolas.size(); i++) {
+                System.out.println((i + 1) + ". Código: " + this.consolas.get(i).getCodProd());
+                System.out.println("   Precio: " + this.consolas.get(i).getPVP() + "€");
+                System.out.println("   Modelo: " + this.consolas.get(i).getModelo());
+                System.out.println("   Marca: " + this.consolas.get(i).getMarca());
+                System.out.println("----------------------------------");
+            }
+            return true;
         }
     }
+
 }
 
 
