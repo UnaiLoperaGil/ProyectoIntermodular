@@ -105,6 +105,10 @@ public class Main {
                         System.out.println(textoRojo + "Lista de Consolas vacía" + resetColor);
                     }
                     break;
+                case 6:
+                    System.out.println(" ");
+                    consolas.generateXML();
+                    break;
                 case 0:
                     System.out.println(" ");
                     System.out.println(textoVerde + "Finalizando programa..." + resetColor);
@@ -126,6 +130,7 @@ public class Main {
         System.out.println("|     3 - Actualizar Consola     |");
         System.out.println("|     4 - Consultar Consola      |");
         System.out.println("|     5 - Imprimir Consolas      |");
+        System.out.println("|     6 - Generar XML            |");
         System.out.println("|     0 - Salir del programa     |");
         System.out.println("+--------------------------------+");
     }

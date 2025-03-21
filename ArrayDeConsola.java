@@ -64,6 +64,28 @@ public class ArrayDeConsola{
         }
     }
 
+    public boolean generateXML(){
+        if (this.consolas.isEmpty()){
+            return false;
+        } else{
+                System.out.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
+                System.out.println("<Consolas>");
+
+                for (Consola consola : consolas) {
+                    System.out.println("  <Consola>");
+                    System.out.println("    <CodProd>" + consola.getCodProd() + "</CodProd>");
+                    System.out.println("    <PVP>" + consola.getPVP() + "</PVP>");
+                    System.out.println("    <Modelo>" + consola.getModelo() + "</Modelo>");
+                    System.out.println("    <Marca>" + consola.getMarca() + "</Marca>");
+                    System.out.println("  </Consola>");
+                }
+
+                System.out.println("</Consolas>");
+                System.out.println();
+            }
+            return true;
+        }
+
     public boolean printConsola() {
         if (this.consolas.isEmpty()) {
             return false;
