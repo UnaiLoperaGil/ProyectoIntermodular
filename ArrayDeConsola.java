@@ -1,6 +1,11 @@
 package ProyectoIntermodular;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.lang.reflect.Field;
+
 
 public class ArrayDeConsola{
     ArrayList<Consola> consolas = new ArrayList<>();
@@ -64,7 +69,7 @@ public class ArrayDeConsola{
         }
     }
 
-    public boolean generateXML(){
+    public boolean generateXMLViejo(){
         if (this.consolas.isEmpty()){
             return false;
         } else{
@@ -85,6 +90,62 @@ public class ArrayDeConsola{
             }
             return true;
         }
+
+    public boolean generateXML() {
+        if (this.consolas.isEmpty()) {
+            return false;
+        }
+
+        // Definir el nombre del archivo
+        String fileName = "consolas.xml";
+
+        try {
+            FileWriter fw = new FileWriter(fileName);
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
+            bw.newLine();
+            bw.write("<" + consolas.get(0).getClass().getSimpleName() + "s>");
+            bw.newLine();
+
+            for (Consola consola : consolas) {
+                bw.write("  <" + consola.getClass().getSimpleName() + ">");
+                bw.newLine();
+
+                Class<?> clazz = consola.getClass();
+                while (clazz != null) {
+                    for (Field field : clazz.getDeclaredFields()) {
+                        field.setAccessible(true);
+                        try {
+                            if (!field.getName().equalsIgnoreCase("Tipo")) { // Omitimos el campo "Tipo"
+                                bw.write("    <" + field.getName() + ">" + field.get(consola) + "</" + field.getName() + ">");
+                                bw.newLine();
+                            }
+                        } catch (IllegalAccessException e) {
+                            bw.write("    <ERROR>Acceso denegado</ERROR>");
+                            bw.newLine();
+                        }
+                    }
+                    clazz = clazz.getSuperclass();
+                }
+
+                bw.write("  </" + consola.getClass().getSimpleName() + ">");
+                bw.newLine();
+            }
+
+            bw.write("</" + consolas.get(0).getClass().getSimpleName() + "s>");
+            bw.newLine();
+
+            bw.close();
+
+            return true;
+
+        } catch (IOException e) {
+            System.out.println("Error al escribir en el archivo: " + e.getMessage());
+            return false;
+        }
+    }
+
+
 
     public boolean printConsola() {
         if (this.consolas.isEmpty()) {

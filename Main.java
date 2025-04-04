@@ -107,7 +107,10 @@ public class Main {
                     break;
                 case 6:
                     System.out.println(" ");
-                    consolas.generateXML();
+                    if(consolas.generateXML()){
+                        System.out.println(textoVerde + "XML generado correctamente en el archivo: consolas.xml" + resetColor);
+
+                    }
                     break;
                 case 0:
                     System.out.println(" ");

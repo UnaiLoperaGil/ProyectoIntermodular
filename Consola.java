@@ -28,6 +28,7 @@ public class Consola extends Producto{
         this.marca = marca;
     }
 
+
     @Override
     public String toString() {
         return "NuevaConsola{" +
