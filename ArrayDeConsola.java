@@ -96,7 +96,6 @@ public class ArrayDeConsola{
             return false;
         }
 
-        // Definir el nombre del archivo
         String fileName = "consolas.xml";
 
         try {
