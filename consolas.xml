@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Consolas>
+  <Consola>
+    <modelo>Mod1</modelo>
+    <marca>Mar1</marca>
+    <codProd>Prod1</codProd>
+    <PVP>200</PVP>
+  </Consola>
+  <Consola>
+    <modelo>Mod2</modelo>
+    <marca>Mar2</marca>
+    <codProd>Prod2</codProd>
+    <PVP>200</PVP>
+  </Consola>
+</Consolas>
